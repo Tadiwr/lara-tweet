@@ -12,10 +12,16 @@
         @guest
             <div class="">
                 <a class="text-xl font-medium p-2" href="/auth" class="text-xl " >Log In</a>
-                <a class="text-xl font-medium p-2" href="/auth/register" class="text-xl " >Create account</a>
+            </div>
+            @else
+            <a class="text-xl font-medium p-2" href="/" class="text-xl " >Home</a>
+            <a class="text-xl font-medium p-2" href="/tweet" class="text-xl " >Post</a>
+            <a class="text-xl font-medium p-2" href="/account/{{Auth::user()->username}}" class="text-xl " >My Account</a>
+
+            <div class="w-1 h-1/2 mx-5 bg-white"  >
 
             </div>
-        @else
+
             <a href="/account/{{Auth::user()->username}}" class="text-xl " >Hello, {{Auth::user()->name}}</a>
         @endguest
     </div>

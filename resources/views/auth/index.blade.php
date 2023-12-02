@@ -1,5 +1,5 @@
 <x-index-layout>
-    <div class=" form-div w-screen h-screen justify-start flex flex-col pt-10 items-center" >
+    <div class=" form-div w-screen h-full justify-start flex flex-col pt-10 items-center" >
 
         {{-- Errors --}}
         @if ($errors->any())

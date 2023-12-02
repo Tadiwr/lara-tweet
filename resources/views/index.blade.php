@@ -1,7 +1,7 @@
 <x-index-layout>
-    <div class="flex flex-col justify-center items-center m-10">
-        <h1>There are no tweets here</h1>
-        <a href="/tweet/make">Make a new tweet!</a>
+    <div class="h-full flex flex-col m-10">
+        @foreach ($tweets as $tweet)
+            <x-tweet-card :tweet="$tweet"></x-tweet-card>
+        @endforeach
     </div>
-
 </x-index-layout>
