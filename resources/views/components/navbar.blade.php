@@ -10,7 +10,11 @@
     <div class="h-full w-full flex justify-end items-center" >
 
         @guest
-            <a href="/auth" class="text-xl " >Log In</a>
+            <div class="">
+                <a class="text-xl font-medium p-2" href="/auth" class="text-xl " >Log In</a>
+                <a class="text-xl font-medium p-2" href="/auth/register" class="text-xl " >Create account</a>
+
+            </div>
         @else
             <a href="/account/{{Auth::user()->username}}" class="text-xl " >Hello, {{Auth::user()->name}}</a>
         @endguest

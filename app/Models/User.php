@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Client\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 
 class User extends Authenticatable
@@ -47,5 +48,16 @@ class User extends Authenticatable
 
     public function tweets() {
         return $this->hasMany(Tweet::class);
+    }
+
+    public static function fromRequest(array $req ) : User {
+        $user = new User();
+        $user->name = $req['name'];
+        $user->username = $req['username'];
+        $user->email = $req['email'];
+        $user->password = $req['password'];
+        $user->email_verified_at = now();
+
+        return $user;
     }
 }

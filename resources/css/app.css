@@ -18,6 +18,12 @@ form>input {
     padding-left: 10px;
 }
 
+form>label {
+    text-align: start;
+    font-weight: 500;
+    color: slategray;
+}
+
 .form-btn {
     width: 100%;
     height: 40px;
@@ -35,13 +41,12 @@ form {
     border: solid;
     border-width: 2px;
     border-color: rgb(224, 224, 224);
-    padding-left: 29px;
-    padding-right: 29px;
+    padding-left: 50px;
+    padding-right: 50px;
     padding-top: 60px;
     padding-bottom: 60px;
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 75%;
 }
 
 form>a {

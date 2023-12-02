@@ -14,8 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Only authenticated users can access
 Route::get('/', function () {
-    return view('index');
-});
+        return view('index');
+})->middleware('auth');
 
-Route::get('/auth', [AuthController::class, 'show']);
+Route::get('/auth', [AuthController::class, 'show'])->name('login');
+
+Route::post('/auth/login', [AuthController::class, 'login']);
+
+
+Route::post('/auth/create', [AuthController::class, 'create']);
+Route::get('/auth/register', [AuthController::class, 'showCreate']);
