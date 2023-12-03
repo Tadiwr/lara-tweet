@@ -1,6 +1,7 @@
 # Lara Tweet 💙🐦
 
 Lara tweet is a simple and minamalistic twitter(now X) clone made with 
+
     - Laravel (Web Framework)
     - Sqlite3 (Database)
     - Blade (Php Templating Engine)
