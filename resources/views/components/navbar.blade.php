@@ -3,7 +3,7 @@
 
     {{-- Logo --}}
     <div class="h-full w-1/4 flex justify-start items-center" >
-        <a href="/" class="text-4xl font-extrabold font-mono" >LaraTweet</a>
+        <a href="/" class="text-4xl font-extrabold font-mono" >ShangwaTweet</a>
     </div>
 
     {{-- Auth Action --}}
@@ -17,6 +17,7 @@
             <a class="text-xl font-medium p-2" href="/" class="text-xl " >Home</a>
             <a class="text-xl font-medium p-2" href="/tweet" class="text-xl " >Post</a>
             <a class="text-xl font-medium p-2" href="/account/{{Auth::user()->username}}" class="text-xl " >My Account</a>
+            <a class=" text-red-300 text-xl font-medium p-2" href="/auth/logout" class="text-xl " >Log Out</a>
 
             <div class="w-1 h-1/2 mx-5 bg-white"  >
 

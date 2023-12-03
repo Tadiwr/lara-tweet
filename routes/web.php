@@ -17,14 +17,22 @@ use App\Http\Controllers\TweetController;
 |
 */
 
-// Only authenticated users can access
+// Only authenticated users can access;
 Route::get('/', function () {
 
-    $tweets = Tweet::with('user')->latest()->get();
+    $all = Tweet::with('user')->latest()->get()->all();
+
+    function map($tweet) {
+            return Tweet::time_elapsed_string($tweet->created_at, false);
+    }
+
+    $time_elapsed = array_map('map', $all);
 
 
     return view('index', [
-        "tweets" => $tweets
+        "tweets" => $all,
+        "times" => $time_elapsed
+
     ]);
 })->middleware('auth');
 

@@ -1,4 +1,5 @@
 @props(['tweet'])
+@props(['time'])
 
 <div class="border-t-2 border-b-2 border-solid w-full" >
 
@@ -10,6 +11,7 @@
 
         <a  href="/account/{{$tweet->user->username}}" class="mx-1 text-xl font-bold " >{{$tweet->user->name}}</a>
         <a href="/account/{{$tweet->user->username}}" class="mx-1 text-xl font-medium text-slate-500" >{{"@" . $tweet->user->username}}</a>
+        <p class="mx-1 text-xl font-medium text-slate-300" >{{$time}}</p>
     </div>
 
 
