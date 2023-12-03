@@ -14,16 +14,23 @@
                 <a class="text-xl font-medium p-2" href="/auth" class="text-xl " >Log In</a>
             </div>
             @else
-            <a class="text-xl font-medium p-2" href="/" class="text-xl " >Home</a>
-            <a class="text-xl font-medium p-2" href="/tweet" class="text-xl " >Post</a>
-            <a class="text-xl font-medium p-2" href="/account/{{Auth::user()->username}}" class="text-xl " >My Account</a>
-            <a class=" text-red-300 text-xl font-medium p-2" href="/auth/logout" class="text-xl " >Log Out</a>
+            <div class="hidden w-full h-full md:flex flex-row justify-end items-center " >
+                <a class="text-xl font-medium p-2" href="/" class="text-xl " >Home</a>
+                <a class="text-xl font-medium p-2" href="/tweet" class="text-xl " >Post</a>
+                <a class="text-xl font-medium p-2" href="/account/{{Auth::user()->username}}" class="text-xl " >My Account</a>
+                <a class=" text-red-300 text-xl font-medium p-2" href="/auth/logout" class="text-xl " >Log Out</a>
+            </div>
 
-            <div class="w-1 h-1/2 mx-5 bg-white"  >
+            <div class=" md:block hidden w-1 h-1/2 mx-5 bg-white"  >
 
             </div>
 
-            <a href="/account/{{Auth::user()->username}}" class="text-xl " >Hello, {{Auth::user()->name}}</a>
+            <div class="md:hidden grid grid-cols-1 gap-2 w-1/5" >
+                <div class="bg-white h-1 rounded-full  w-full"></div>
+                <div class="bg-white h-1 rounded-full w-full"></div>
+                <div class="bg-white h-1 rounded-full w-full"></div>
+            </div>
+            <a href="/account/{{Auth::user()->username}}" class="text-xl hidden md:block" >Hello, {{Auth::user()->name}}</a>
         @endguest
     </div>
 

@@ -1,5 +1,5 @@
 <x-index-layout>
-    <div class="w-full h-full pt-20 pl-20" >
+    <div class="w-full h-full pt-20 md:pl-20 pl-5" >
         <div class="h-32 w-32 mb-5 bg-slate-300 rounded-full" >
 
         </div>
@@ -8,7 +8,7 @@
 
         <br>
 
-        <div class="grid grid-cols-3">
+        <div class="grid md:grid-cols-3 grid-cols-1 mb-10">
             <h1  class="text-2xl font-bold"  >{{$user->following_count }} <span class="font-normal text-slate-500">Following</span></h1>
             <h1  class="text-2xl font-bold"  >{{$user->follower_count }} <span class="font-normal text-slate-500">Followers</span></h1>
             <h1  class="text-2xl font-bold"  >{{count($user->tweets) }} <span class="font-normal text-slate-500">Tweets</span></h1>
@@ -25,7 +25,7 @@
         <br>
 
         {{-- Tweets by that user --}}
-        <div class="w-3/4 mt-20" >
+        <div class="md:w-3/4 mt-20 w-full" >
             <h1 class="text-3xl mb-10 " >{{$user->name . "'s Tweets"}}</h1>
             @foreach ($user->tweets as $key => $tweet)
             <x-tweet-card  :time='$times[$key]' :tweet='$tweet' ></x-tweet-card>
