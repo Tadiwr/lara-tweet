@@ -17,20 +17,19 @@
         <br>
 
         @guest
-            <button class="bg-blue-400 px-6 py-2 rounded-full" >Login To Follow</button>
+            <a href="/auth/login" class="bg-blue-400 px-6 py-2 rounded-full" >Login To Follow</a>
         @else
-            <button class="bg-blue-400 px-6 py-2 rounded-full" >Follow</button>
+            @if ($is_follower)
+            <a href="/unfollow/{{$user->id}}" class="bg-stone-600 px-6 py-2 rounded-full" >Unfollow</a>
+            @else
+            <a href="/follow/{{$user->id}}" class="bg-blue-400 px-6 py-2 rounded-full" >Follow</a>
+
+            @endif
         @endguest
 
         <br>
 
         {{-- Tweets by that user --}}
-        <div class="md:w-3/4 mt-20 w-full" >
-            <h1 class="text-3xl mb-10 " >{{$user->name . "'s Tweets"}}</h1>
-            @foreach ($user->tweets as $key => $tweet)
-            <x-tweet-card  :time='$times[$key]' :tweet='$tweet' ></x-tweet-card>
-            {{-- {{ $tweet }} --}}
-            @endforeach
-        </div>
+        <x-tweets-con :user='$user' :times='$times' ></x-tweets-con>
     </div>
 </x-index-layout>

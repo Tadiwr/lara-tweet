@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Following;
 use App\Models\User;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
@@ -24,10 +25,20 @@ class UserController extends Controller
 
         if(auth()->id() != $user->id) {
 
-            return view('account.guest', [
-                "user" => $user,
-                'times' => $time_elapsed
-            ]);
+            if(!auth()->guest()) {
+                return view('account.guest', [
+                    "user" => $user,
+                    'times' => $time_elapsed,
+                    'is_follower' => FollowingController::isFollowing($user->id)
+                ]);
+            } else {
+
+
+                return view('account.guest', [
+                    "user" => $user,
+                    'times' => $time_elapsed,
+                ]);
+            }
 
         } else {
             return view('account.index', [
