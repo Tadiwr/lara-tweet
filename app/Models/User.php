@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
 
+    public function followings() {
+        return $this->hasMany(Following::class);
+    }
+
     public static function fromRequest(array $req ) : User {
         $user = new User();
         $user->name = $req['name'];
