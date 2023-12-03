@@ -13,7 +13,7 @@ class UserController extends Controller
         $user = User::where('username', $username)
         ->firstOrFail();
 
-        if(auth()->guest()) {
+        if(auth()->id() != $user->id) {
             return view('account.guest', [
                 "user" => $user
             ]);
