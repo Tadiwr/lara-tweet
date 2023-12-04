@@ -17,7 +17,7 @@
         <br>
 
         @guest
-            <a href="/auth/login" class="bg-blue-400 px-6 py-2 rounded-full" >Login To Follow</a>
+            <a href="/auth" class="bg-blue-400 px-6 py-2 rounded-full" >Login To Follow</a>
         @else
             @if ($is_follower)
             <a href="/unfollow/{{$user->id}}" class="bg-stone-600 px-6 py-2 rounded-full" >Unfollow</a>
