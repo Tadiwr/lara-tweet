@@ -21,11 +21,11 @@
             <label>Username</label>
             <input required placeholder="Username" name="username" type="text">
             <label>Email</label>
-            <input required  placeholder="Email" name="email" type="text">
+            <input required  placeholder="Email" name="email" type="email">
             <label>Password</label>
             <input required minlength="8" placeholder="Password" name="password" type="password">
             <input  class="form-btn" name="Register" type='submit' >
-            <a   href="/auth">Already have an account yet? <br/> Click here to log in</a>
+            <a  href="/auth">Already have an account yet? <br/> Click here to log in</a>
         </form>
     </div>
 </x-index-layout>

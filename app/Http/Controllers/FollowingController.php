@@ -25,71 +25,77 @@ class FollowingController extends Controller
     }
 
     /**
-     * This function will adda follower for the currently signed in user
+     * This function will add follower for the currently signed in user
      */
-    public function follow($user_id)
+    public function follow($followee_id)
     {
-        $following = new Following([
+
+        // Creates a following model
+        $following = Following::create([
             'follower' => auth()->user()->id,
-            'followee' => $user_id
+            'followee' => $followee_id
         ]);
 
-        $followee = User::all()->find($user_id);
-        $follower = User::all()->find($user_id);
+
+        $followee = User::all()->find($followee_id);
+        $follower = User::all()->find(auth()->user()->id);
 
         $followee->follower_count++;
         $follower->following_count++;
 
-        $following->save();
 
-        $followee->save();
-        $follower->save();
+        $followee->update();
+        $follower->update();
 
 
         return redirect()->back();
     }
 
-    public function unfollow($user_id)
+    /**
+     * Method to unfollow a user
+     *
+     * @param int $followee_id is the id of the user that is to be unfollowed
+     */
+    public function unfollow($followee_id)
     {
-        // Get record representing the follower-followee relationship
-        $following = Following::all()
-        ->where('follower', auth()->user()->id)
-        ->where('followee', $user_id)
-        ->first();
 
-        if($following) {
-            $following->delete();
+        $key = [
+            "follower" => auth()->user()->id,
+            "followee" => $followee_id
+        ];
 
-            // Decrementing the follower count of the former followee
-            $followee = User::all()->find($user_id);
-            $followee->follower_count--;
+        if(Following::where($key)->exists()) {
 
-            // Decrement the count of followings for the former follower
-            $follower = User::all()->find(auth()->user()->id);
-            $follower->following_count--;
+            // Get model representing the follower-followee relationship and delete it
+            Following::where($key)->delete();
 
+            // Decrementing the Followees follower count
+            $followeeModel = User::all()->find($followee_id);
+            $followeeModel->follower_count--;
+            $followeeModel->update();
 
-            $followee->save();
-            $follower->save();
+            // Decrementing the followers following count
+            $followerModel = User::all()->find(auth()->user()->id);
+            $followerModel->following_count--;
+            $followerModel->update();
 
             return redirect()->back();
         } else {
-            return abort(404, 'User not found');
+            return abort(400, 'You don;t follow this user');
         }
+
+
 
     }
 
     public static function isFollowing($user_id) : bool {
-        $followee = Following::all()
-        ->where('follower', auth()->user()->id)
-        ->where('followee', $user_id)
-        ->first();
+        $key = [
+            "follower" => auth()->user()->id,
+            "followee" => $user_id
+        ];
 
-        if($followee) {
-            return true;
-        } else {
-            return false;
-        }
+        return Following::where($key)->exists();
+
     }
 
     /**

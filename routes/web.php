@@ -54,5 +54,5 @@ Route::get('/tweet/like/{id}', [TweetController::class, 'incLike'])->middleware(
 Route::get('/tweet/dislike/{id}', [TweetController::class, 'decLike'])->middleware('auth');
 
 // Following Routes
-Route::get('/follow/{user_id}', [FollowingController::class, 'follow']);
-Route::get('/unfollow/{user_id}', [FollowingController::class, 'unfollow']);
+Route::get('/follow/{followee_id}', [FollowingController::class, 'follow']);
+Route::get('/unfollow/{followee_id}', [FollowingController::class, 'unfollow']);
